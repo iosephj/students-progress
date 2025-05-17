@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de alumnos</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    .alumno { padding: 0.5em; border-bottom: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>Alumnos</h2>
+  <div id="lista"></div>
+
+  <script>
+    const url = "https://script.google.com/macros/s/AKfycbwyKiDEJX4hwqi6viwJ5db92mi9an8FrbQ1RvAX0_KGtU0-sGhHtdrIIiQ50eVc0GbjWg/exec"; // reemplaza por tu URL real
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const contenedor = document.getElementById('lista');
+        data.forEach(alumno => {
+          const div = document.createElement('div');
+          div.className = 'alumno';
+          div.textContent = alumno.Estudiante; // usa el campo que tengas en la hoja
+          contenedor.appendChild(div);
+        });
+      })
+      .catch(err => {
+        console.error('Error al cargar alumnos:', err);
+      });
+  </script>
+</body>
+</html>
